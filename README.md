@@ -1,5 +1,9 @@
 # FormakiPrac
 
+## Чтобы посавить проект себе локально :  
+git clone git@github.com:Drago160/FormakiPrac.git  
+cd FormalkiPrac  
+
 ## Для сборки проекта пишите в корне в консоли :
 mkdir build  
 cd build  
