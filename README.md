@@ -1,16 +1,26 @@
-# FormakiPrac
+# Coca-Yangera-Kasami-Parser
 
-## Чтобы посавить проект себе локально :  
-git clone git@github.com:Drago160/FormakiPrac.git  
-cd FormalkiPrac  
+## Чтобы поставить локально
+git clone git@github.com:Drago160/Coca-Yangera-Kasami-Parser.git  
+cd Coca-Yangera-Kasami-Parser  
+git checkout develop
 
-## Для сборки проекта пишите в корне в консоли :
-mkdir build  
+## Чтобы собрать проект:
+Запустите скрипт build_script  
+он сам подгрузит библиотеку для тестов и соберет проект
+
+### Чтобы пересобрать проект(может вам понадобиться)
 cd build  
-cmake ..
+cmake ..  
 make  
-Для запуска main(который сейчас пуст) запустите run  
-Для запуска тестов зайдите в Tests/bin и запустите BasicTest  
+cd ..
+
+### Запуск
+main можно исполнить, исполнив build/run
+- ./build/run
+
+Тесты прогнать можно исполнив Tests/bin/BasicTests
+- ./Tests/bin/BasicTests
 
 ### Хотя я настоятельно рекомендую запускать все через CLion  
 
