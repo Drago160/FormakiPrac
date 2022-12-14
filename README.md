@@ -2,7 +2,7 @@
 
 ## Чтобы поставить локально
 git clone git@github.com:Drago160/FormakiPrac.git  
-cd FormalkiPrac  
+cd FormakiPrac  
 git checkout develop
 
 ## Чтобы собрать проект:
