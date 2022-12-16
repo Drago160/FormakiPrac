@@ -24,6 +24,7 @@ add_executable(BasicTests
         2ndFromHwTest.cpp
         Regexes_tests.cpp
         Balanced_tests.cpp
+        fromCW_test.cpp
             )
 
 
