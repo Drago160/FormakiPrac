@@ -46,38 +46,9 @@ std::string ExtractSegm(const std::string& str, size_t left, size_t right) {
   }
   return segm;
 }
-
 CF_Grammar::CF_Grammar(const std::string& rules) {
-  start_terminal_ = 'S';
-  int i = 0;
-  while (i < rules.size()) {
-    while (rules[i] != '\n' && i < rules.size()) {
-      char src = rules[i];
-      while (rules[i] == ' '){
-        ++i;
-      }
-      rules_[src];
-      non_terminals_.insert(src);
-      i += 3;
-      while (rules[i] == ' ') {
-        ++i;
-      }
-      size_t start = i;
-      while (rules[i] != ';' && i < rules.size()) {
-        ++i;
-        if (rules[i] == '|' || rules[i] == ';' || i == rules.size()) {
-          rules_[src].push_back(ExtractSegm(rules, start, i - 1));
-          start = i+1;
-        }
-      }
-      ++i;
-    }
-  }
-  for (char c : rules) {
-    if (!non_terminals_.contains(c) && c != '>' && c!=';' && c!='-' && c!='|') {
-      terminals_.insert(c);
-    }
-  }
+  CF_Creator builder(rules, this);
+  builder.ParseFormat();
 }
 
 void CF_Grammar::PrintInfo() {

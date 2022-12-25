@@ -12,6 +12,7 @@ add_executable(run
         Earley/src/EarleyManager.cpp
         Earley/src/earley.cpp
         Earley/include/EarleyManger.h
+        Grammar/Creator.cpp
         )
 
 include_directories(

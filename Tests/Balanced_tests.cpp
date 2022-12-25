@@ -4,7 +4,7 @@
 class BalancedTest : public ::testing::Test {
  protected:
   void SetUp() {
-    G = new CF_Grammar("S->aA|bB|;A->aAA|bS|a;B->bBB|aS|b");
+    G = new CF_Grammar("S->aA|bB|;A->aAA|bS|a;B->bBB|aS|b;");
   }
   CF_Grammar* G;
 };

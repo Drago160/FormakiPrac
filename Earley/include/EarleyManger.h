@@ -16,14 +16,8 @@ class EarleyManager {
     std::string word;
     size_t parent_pos;
     Situation() = default;
-    Situation(char src,
-              std::string word,
-              size_t point_position,
-              size_t parent_pos)
-        : src(src),
-          word(word),
-          point_position(point_position),
-          parent_pos(parent_pos) {}
+    Situation(char src, std::string word, size_t point_position, size_t parent_pos)
+        : src(src), word(word), point_position(point_position), parent_pos(parent_pos) {}
 
     bool operator<(const Situation& situation) const;
 
@@ -39,8 +33,7 @@ class EarleyManager {
 
   struct Situation_hash {
     std::size_t operator()(Situation const& sit) const {
-      return std::hash<std::string>()(sit.word) ^ sit.parent_pos
-          ^ sit.point_position;
+      return std::hash<std::string>()(sit.word) ^ sit.parent_pos ^ sit.point_position;
     }
   };
 

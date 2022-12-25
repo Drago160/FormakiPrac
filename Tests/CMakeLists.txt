@@ -16,6 +16,7 @@ add_executable(BasicTests
         ../Grammar/CF_Grammar.cpp
         ../Earley/src/EarleyManager.cpp
         ../Earley/src/earley.cpp
+        ../Grammar/Creator.cpp
         psp_tests.cpp
 	diff_psp_tests.cpp
 	2ndFromHwTest.cpp

@@ -21,7 +21,7 @@ class Regex2 : public ::testing::Test {
 class Regex3 : public ::testing::Test {
  protected:
   void SetUp() {
-    G3 = new CF_Grammar("S->aS|bS|B;B->bbC;C->aC|bC|aa|ba");
+    G3 = new CF_Grammar("S->aS|bS|B;B->bbC;C->aC|bC|aa|ba;");
   }
   CF_Grammar* G3; // (a+b)*bb(a+b)+a
 };

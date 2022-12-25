@@ -5,7 +5,7 @@ class PspTest : public ::testing::Test {
  protected:
   void SetUp() {
     G = new CF_Grammar("S->(S)S|;");
-    G1 = new CF_Grammar("S->(F)F|;F->(F)F|");
+    G1 = new CF_Grammar("S->(F)F|;F->(F)F|;");
   }
   CF_Grammar* G;
   CF_Grammar* G1;
