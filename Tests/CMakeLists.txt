@@ -16,12 +16,12 @@ add_executable(BasicTests
         ../Grammar/CF_Grammar.cpp
         ../Earley/src/EarleyManager.cpp
         ../Earley/src/earley.cpp
-        #psp_tests.cpp
+        psp_tests.cpp
 	diff_psp_tests.cpp
-	#2ndFromHwTest.cpp
-	#Regexes_tests.cpp
-	#Balanced_tests.cpp
-	#fromCW_test.cpp
+	2ndFromHwTest.cpp
+	Regexes_tests.cpp
+	Balanced_tests.cpp
+	fromCW_test.cpp
     )
 
 
