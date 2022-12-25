@@ -7,9 +7,9 @@ bool EarleyManager::Situation::operator<(const EarleyManager::Situation& situati
     return false;
   }
 
-  if (point_pos < situation.point_pos) {
+  if (point_position < situation.point_position) {
     return true;
-  } else if (point_pos > situation.point_pos) {
+  } else if (point_position > situation.point_position) {
     return false;
   }
 
@@ -28,20 +28,20 @@ bool EarleyManager::Situation::operator<(const EarleyManager::Situation& situati
 }
 
 bool EarleyManager::Situation::operator==(const EarleyManager::Situation& situation) const {
-  return (point_pos == situation.point_pos &&
+  return (point_position == situation.point_position &&
       word == situation.word &&
       parent_pos == situation.parent_pos &&
       src == situation.src);
 }
-EarleyManager::Backet::Backet(const Situation& sit) {
+EarleyManager::Bucket::Bucket(const Situation& sit) {
   pathes.insert({sit.AfterPointSymb(), {sit}});
 }
 
-const std::set<EarleyManager::Situation>& EarleyManager::Backet::GetIterPath( char letter) const {
+const std::set<EarleyManager::Situation>& EarleyManager::Bucket::GetIterPath( char letter) const {
   return pathes.at(letter);
 }
 
-void EarleyManager::Backet::Insert(const EarleyManager::Situation& situation) {
+void EarleyManager::Bucket::Insert(const EarleyManager::Situation& situation) {
   if (pathes.contains(situation.AfterPointSymb())) {
     pathes.at(situation.AfterPointSymb()).insert(situation);
   } else {
@@ -49,7 +49,7 @@ void EarleyManager::Backet::Insert(const EarleyManager::Situation& situation) {
   }
 }
 
-bool EarleyManager::Backet::Contains(const EarleyManager::Situation& situation) const {
+bool EarleyManager::Bucket::Contains(const EarleyManager::Situation& situation) const {
   if (pathes.contains(situation.AfterPointSymb())) {
     for (const auto& sit : pathes.at(situation.AfterPointSymb())) {
       if (situation == sit) {
@@ -60,12 +60,12 @@ bool EarleyManager::Backet::Contains(const EarleyManager::Situation& situation) 
   return false;
 }
 
-EarleyManager::EarleyManager(CF_Grammar& G): rules_(G.GetRules()), terminals_(G.GetTerminals()) {
-  start_non_terminal_ = G.GetStartNonTerm();
+EarleyManager::EarleyManager(const CF_Grammar& grammar): rules_(grammar.GetRules()), terminals_(grammar.GetTerminals()) {
+  start_non_terminal_ = grammar.GetStartNonTerm();
   std::string start;
   start.push_back(start_non_terminal_);
   Situation zero_situation('0', start, 0, 0);  // S' := 0
-  parse_list_.push_back(Backet(zero_situation));
+  parse_list_.push_back(Bucket(zero_situation));
 }
 
 bool EarleyManager::Recognize(const std::string& word) {
@@ -93,12 +93,12 @@ bool EarleyManager::Recognize(const std::string& word) {
 }
 
 bool EarleyManager::Situation::CanComplete() const {
-  return word.size() == point_pos;
+  return word.size() == point_position;
 }
 
 EarleyManager::Situation EarleyManager::Situation::ShiftCopy() const {
   Situation copy = *this;
-  ++copy.point_pos;
+  ++copy.point_position;
   return copy;
 }
 
@@ -128,7 +128,7 @@ bool EarleyManager::IsRuleNonTerminal(char c) const {
 }
 
 char EarleyManager::Situation::AfterPointSymb() const {
-  return word[point_pos];
+  return word[point_position];
 }
 
 void EarleyManager::Predict(size_t list_idx) {
@@ -153,7 +153,7 @@ void EarleyManager::Predict(size_t list_idx) {
 }
 
 void EarleyManager::Scan(size_t list_idx) {
-  Backet new_backet;
+  Bucket new_Bucket;
   if (parse_list_[list_idx].pathes.contains(word_[list_idx])) { // если есть буква после нетерминала
     for (const Situation& sit : parse_list_[list_idx].GetIterPath(word_[list_idx])) { // итерируемся по ситуациям с точкой перед idx-й бувой
       Situation shifts = sit.ShiftCopy();
@@ -162,11 +162,11 @@ void EarleyManager::Scan(size_t list_idx) {
           can_complete_situations_.insert(shifts);
         }
       } else {
-        if (!new_backet.Contains(shifts)) {
-          new_backet.Insert(shifts);
+        if (!new_Bucket.Contains(shifts)) {
+          new_Bucket.Insert(shifts);
         }
       }
     }
   }
-  parse_list_.push_back(new_backet);
+  parse_list_.push_back(new_Bucket);
 }

@@ -28,7 +28,7 @@ class CF_Grammar {
   void PrintInfo();
 
  private:
-  std::unordered_set<char> termianls_;                          // Sigma
+  std::unordered_set<char> terminals_;                          // Sigma
   std::unordered_set<char> non_terminals_;                       // N
   std::unordered_map<char, std::vector<std::string>> rules_;    // P
   char start_terminal_;                                          // S

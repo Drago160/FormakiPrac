@@ -1,4 +1,4 @@
 #pragma once
 #include "EarleyManger.h"
 
-bool earleyRecognize(CF_Grammar G, std::string word);
+bool earleyRecognize(const CF_Grammar& G, const std::string& word);

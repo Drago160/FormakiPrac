@@ -5,7 +5,7 @@ std::unordered_map<char, std::vector<std::string>> CF_Grammar::GetRules() const 
 }
 
 std::unordered_set<char> CF_Grammar::GetTerminals() const {
-  return termianls_;      // Sigma
+  return terminals_;      // Sigma
 }
 
 char CF_Grammar::GetStartNonTerm() const { return start_terminal_; }
@@ -18,7 +18,7 @@ CF_Grammar::CF_Grammar(const std::vector<char>& non_terminals,
     non_terminals_.insert(c);
   }
   for (char c : terminals) {
-    termianls_.insert(c);
+    terminals_.insert(c);
   }
   start_terminal_ = S;
   for (auto rule : rules) {
@@ -35,10 +35,10 @@ CF_Grammar::CF_Grammar(std::unordered_set<char> non_termianls,
                        std::unordered_map<char, std::vector<std::string>> rules,
                        char S) : rules_(rules), start_terminal_(S) {
   non_terminals_ = non_termianls;
-  termianls_ = terminals;
+  terminals_ = terminals;
 }
 
-std::string StrSegm(const std::string& str, size_t left, size_t right) {
+std::string ExtractSegm(const std::string& str, size_t left, size_t right) {
   std::string segm;
   segm.resize(right - left + 1);
   for (size_t i = left; i <= right; ++i) {
@@ -66,7 +66,7 @@ CF_Grammar::CF_Grammar(const std::string& rules) {
       while (rules[i] != ';' && i < rules.size()) {
         ++i;
         if (rules[i] == '|' || rules[i] == ';' || i == rules.size()) {
-          rules_[src].push_back(StrSegm(rules, start, i - 1));
+          rules_[src].push_back(ExtractSegm(rules, start, i - 1));
           start = i+1;
         }
       }
@@ -75,14 +75,14 @@ CF_Grammar::CF_Grammar(const std::string& rules) {
   }
   for (char c : rules) {
     if (!non_terminals_.contains(c) && c != '>' && c!=';' && c!='-' && c!='|') {
-      termianls_.insert(c);
+      terminals_.insert(c);
     }
   }
 }
 
 void CF_Grammar::PrintInfo() {
   std::cout << "Terminals_: ";
-  for (const char c : termianls_) {
+  for (const char c : terminals_) {
     std::cout << c << " ";
   }
   std::cout << std::endl;

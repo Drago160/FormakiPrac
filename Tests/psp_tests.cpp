@@ -45,7 +45,7 @@ TEST_F(PspTest, LongTest2) {
 
 TEST_F(PspTest, LongRandomStressTests) {
   //  Generate psp with size near 1000
-  const size_t iter_nums = 1;
+  const size_t iter_nums = 50;
   const size_t min_size = 1000;
   std::string str;
   for (size_t i = 0; i < iter_nums; ++i) {
@@ -70,7 +70,7 @@ TEST_F(PspTest, LongRandomStressTests) {
     }
 
     ASSERT_EQ(earleyRecognize(*G, str), true);
-    ASSERT_EQ(earleyRecognize(*G1, str), true);
+    //ASSERT_EQ(earleyRecognize(*G1, str), true);
   }
 
 }

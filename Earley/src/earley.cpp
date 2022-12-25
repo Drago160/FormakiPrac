@@ -1,6 +1,6 @@
 #include "earley.h"
 
-bool earleyRecognize(CF_Grammar G, std::string word) {
+bool earleyRecognize(const CF_Grammar& G, const std::string& word) {
   EarleyManager manger(G);
   return manger.Recognize(word);
 }
