@@ -5,6 +5,8 @@
 #include <vector>
 #include <iostream>
 
+class ParseTester;
+
 class CF_Grammar {
  public:
   CF_Grammar(std::unordered_set<char> non_termianls,  //  <N, Sigma, P, S>
@@ -31,9 +33,9 @@ class CF_Grammar {
 
  private:
 
-  class CF_Creator {
+  class Parser {
    public:
-    CF_Creator(const std::string input, CF_Grammar* grammar_ptr)
+    Parser(const std::string input, CF_Grammar* grammar_ptr)
         : input_(input), grammar_ptr_(grammar_ptr) {};
     void ParseFormat();
    private:
@@ -44,10 +46,13 @@ class CF_Grammar {
     CF_Grammar* grammar_ptr_;
     std::string input_;
     size_t read_idx = 0;
+
   };
 
   std::unordered_set<char> terminals_;                          // Sigma
   std::unordered_set<char> non_terminals_;                       // N
   std::unordered_map<char, std::vector<std::string>> rules_;    // P
   char start_terminal_;                                          // S
+
+  friend ParseTester;
 };

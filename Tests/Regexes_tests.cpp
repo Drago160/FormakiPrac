@@ -6,6 +6,9 @@ class Regex1 : public ::testing::Test {
   void SetUp() {
     G1 = new CF_Grammar("S->aA|Aa|A;A->aA|a;");
   }
+  void TearDown() {
+    delete G1;
+  }
   CF_Grammar* G1; // a+
 };
 
@@ -13,6 +16,9 @@ class Regex2 : public ::testing::Test {
  protected:
   void SetUp() {
     G2 = new CF_Grammar("S->aB|b;B->bB|bS|bb;");
+  }
+  void TearDown() {
+    delete G2;
   }
   CF_Grammar* G2; // (ab+)*b
 };
@@ -22,6 +28,9 @@ class Regex3 : public ::testing::Test {
  protected:
   void SetUp() {
     G3 = new CF_Grammar("S->aS|bS|B;B->bbC;C->aC|bC|aa|ba;");
+  }
+  void TearDown() {
+    delete G3;
   }
   CF_Grammar* G3; // (a+b)*bb(a+b)+a
 };

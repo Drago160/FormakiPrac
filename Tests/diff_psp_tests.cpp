@@ -9,6 +9,10 @@ class DiffPspTest : public ::testing::Test {
   }
   CF_Grammar* G;
   CF_Grammar* G1;
+  void TearDown() {
+    delete G;
+    delete G1;
+  }
 };
 
 TEST_F(DiffPspTest, BasicTest1) {

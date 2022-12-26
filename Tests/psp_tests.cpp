@@ -7,6 +7,10 @@ class PspTest : public ::testing::Test {
     G = new CF_Grammar("S->(S)S|;");
     G1 = new CF_Grammar("S->(F)F|;F->(F)F|;");
   }
+  void TearDown() {
+    delete G;
+    delete G1;
+  }
   CF_Grammar* G;
   CF_Grammar* G1;
 };

@@ -6,6 +6,9 @@ class BalancedTest : public ::testing::Test {
   void SetUp() {
     G = new CF_Grammar("S->aA|bB|;A->aAA|bS|a;B->bBB|aS|b;");
   }
+  void TearDown() {
+    delete G;
+  }
   CF_Grammar* G;
 };
 

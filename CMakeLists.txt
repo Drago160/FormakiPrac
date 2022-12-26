@@ -11,12 +11,14 @@ add_executable(run
         Grammar/CF_Grammar.cpp
         Earley/src/EarleyManager.cpp
         Earley/src/earley.cpp
-        Earley/include/EarleyManger.h
-        Grammar/Creator.cpp
+        Earley/include/EarleyManager.h
+        Grammar/Parser.cpp
         )
 
 include_directories(
         Grammar
-        Earley/include)
+        Earley/include
+        Tests/FriendTester
+        )
 
 add_subdirectory(Tests)

@@ -16,7 +16,11 @@ class HWTester : public ::testing::Test {
 
                         'T');
   }
+  void TearDown() {
+    delete G;
+  }
   CF_Grammar* G;
+
 };
 
 TEST_F(HWTester, BasicTest) {

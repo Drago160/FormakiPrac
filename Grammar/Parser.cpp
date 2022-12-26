@@ -1,6 +1,6 @@
 #include "CF_Grammar.h"
 
-std::string CF_Grammar::CF_Creator::ExtractSegm(size_t left, size_t right) {
+std::string CF_Grammar::Parser::ExtractSegm(size_t left, size_t right) {
   std::string segm;
   segm.resize(right - left + 1);
   for (size_t i = left; i <= right; ++i) {
@@ -9,7 +9,7 @@ std::string CF_Grammar::CF_Creator::ExtractSegm(size_t left, size_t right) {
   return segm;
 }
 
-void CF_Grammar::CF_Creator::ReadRule() {
+void CF_Grammar::Parser::ReadRule() {
   char src = input_[read_idx];
   read_idx += 3; // ignore(->)
   size_t begin = read_idx;
@@ -29,7 +29,7 @@ void CF_Grammar::CF_Creator::ReadRule() {
   ++read_idx;
 }
 
-void CF_Grammar::CF_Creator::InsertNewRightPart(char src, const std::string& dst) {
+void CF_Grammar::Parser::InsertNewRightPart(char src, const std::string& dst) {
   if (grammar_ptr_->rules_.contains(src)) {
     grammar_ptr_->rules_[src].push_back(dst);
   } else {
@@ -37,7 +37,7 @@ void CF_Grammar::CF_Creator::InsertNewRightPart(char src, const std::string& dst
   }
 }
 
-void CF_Grammar::CF_Creator::HandleNonAndTerminals() {
+void CF_Grammar::Parser::HandleNonAndTerminals() {
   for (char c : input_) {
     if (c == '-' || c == '\n' || c == '|' || c == '>' || c == ' ' || c == ';') {
       continue;
@@ -50,7 +50,7 @@ void CF_Grammar::CF_Creator::HandleNonAndTerminals() {
   }
 }
 
-void CF_Grammar::CF_Creator::ParseFormat() {
+void CF_Grammar::Parser::ParseFormat() {
   grammar_ptr_->start_terminal_ = 'S';
   while (read_idx < input_.size() - 1) {
     ReadRule();

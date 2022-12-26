@@ -3,6 +3,8 @@
 #include <vector>
 #include <set>
 
+class ManagerTester;
+
 class EarleyManager {
  public:
   EarleyManager(const CF_Grammar& grammar);
@@ -51,7 +53,6 @@ class EarleyManager {
     bool Contains(const Situation& situation) const;
   };
 
- private:
   bool IsRuleNonTerminal(char c) const;
 
   void Complete(size_t list_idx);
@@ -67,4 +68,6 @@ class EarleyManager {
   std::vector<Bucket> parse_list_;
   std::unordered_set<char> terminals_;
   char start_non_terminal_;
+
+  friend ManagerTester;
 };

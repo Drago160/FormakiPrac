@@ -7,6 +7,9 @@ class CW_Tester : public ::testing::Test {
     G = new CF_Grammar("S->A|AA|AAA;A->bAA|cAA|aC;C->aB|bA|cA|;B->bC|cC|aBB;"); // |w|_a - |w|_b - |w|_c \in {1, 2, 3}
   }
   CF_Grammar* G;
+  void TearDown() {
+    delete G;
+  }
 };
 
 TEST_F(CW_Tester, basic1) {

@@ -47,7 +47,7 @@ std::string ExtractSegm(const std::string& str, size_t left, size_t right) {
   return segm;
 }
 CF_Grammar::CF_Grammar(const std::string& rules) {
-  CF_Creator builder(rules, this);
+  Parser builder(rules, this);
   builder.ParseFormat();
 }
 

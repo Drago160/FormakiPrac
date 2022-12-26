@@ -1,4 +1,4 @@
-#include "EarleyManger.h"
+#include "EarleyManager.h"
 bool EarleyManager::Situation::operator<(const EarleyManager::Situation& situation) const {
 
   if (src < situation.src) {
