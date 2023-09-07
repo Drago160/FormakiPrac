@@ -1,4 +1,4 @@
-# Coca-Yangera-Kasami-Parser
+# Earley
 
 ## Чтобы поставить локально
 git clone git@github.com:Drago160/FormakiPrac.git  
